@@ -11,7 +11,7 @@ public class playerMovement : MonoBehaviour
     [SerializeField] private float maxHealth=100;
     [SerializeField] private float currentHealth;
     public float damagePerSlash;
-
+    [SerializeField] private UltimateJoystick joystick;
     [SerializeField] PlayerState State;
     enum PlayerState
     {
@@ -33,8 +33,10 @@ public class playerMovement : MonoBehaviour
     }
     void Movement()
     {
-        float h = Input.GetAxis("Horizontal");
-        float v = Input.GetAxis("Vertical");
+        //float h = Input.GetAxis("Horizontal");
+        //float v = Input.GetAxis("Vertical");
+        float h = joystick.GetHorizontalAxis();
+        float v = joystick.GetVerticalAxis();
         rb.velocity = new Vector3(h, 0, v) * speed;
         if (h != 0 || v != 0)
         {
@@ -52,7 +54,7 @@ public class playerMovement : MonoBehaviour
         }
         if (Input.GetMouseButtonDown(0))
         {
-            StartCoroutine(Attack());
+            //StartCoroutine(Attack());
         }
     }
     IEnumerator Attack()
